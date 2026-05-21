@@ -1,0 +1,117 @@
+/* ─── Tailwind v4 + v3 compat config ───────────────────────── */
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+/* ─── Design Tokens ─────────────────────────────────────────── */
+:root {
+  --font-beaufort: 'Cinzel', Georgia, serif;
+  --font-spiegel:  'Inter',  Arial,   sans-serif;
+}
+
+/* ─── Base Reset ────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    height: 100%;
+  }
+
+  body {
+    background-color: #010A13;
+    color: #A09B8C;
+    font-family: var(--font-spiegel);
+    overflow-x: hidden;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar       { width: 4px; }
+  ::-webkit-scrollbar-track { background: #010A13; }
+  ::-webkit-scrollbar-thumb { background: #785A28; border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: #C8AA6E; }
+
+  /* Selection */
+  ::selection {
+    background: rgba(10, 200, 185, .3);
+    color: #C8AA6E;
+  }
+
+  img { image-rendering: auto; }
+}
+
+/* ─── Components ────────────────────────────────────────────── */
+@layer components {
+  /* Gold gradient text */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #C8AA6E 0%, #F0E6D3 50%, #C8AA6E 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Panel / card backgrounds */
+  .hextech-panel {
+    background: linear-gradient(180deg, #0A1628 0%, #060D1A 100%);
+    border: 1px solid #785A28;
+  }
+  .hextech-panel-glow {
+    background: linear-gradient(180deg, #0A1628 0%, #060D1A 100%);
+    border: 1px solid #C8AA6E;
+    box-shadow: 0 0 25px rgba(200,170,110,.15), inset 0 0 40px rgba(200,170,110,.04);
+  }
+
+  /* Decorative dividers */
+  .hextech-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #785A28 20%, #C8AA6E 50%, #785A28 80%, transparent);
+  }
+  .hextech-divider-blue {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #0AC8B9 50%, transparent);
+  }
+
+  /* Status badges */
+  .badge-locked {
+    color: #C8AA6E;
+    border-color: #785A28;
+    background: rgba(200,170,110,.08);
+  }
+  .badge-pending {
+    color: #A09B8C;
+    border-color: #3C3C41;
+    background: rgba(60,60,65,.15);
+  }
+}
+
+/* ─── Utilities ─────────────────────────────────────────────── */
+@layer utilities {
+  .glow-blue { box-shadow: 0 0 15px rgba(10,200,185,.5), 0 0 30px rgba(10,200,185,.25); }
+  .glow-gold { box-shadow: 0 0 15px rgba(200,170,110,.4), 0 0 30px rgba(200,170,110,.2); }
+
+  /* Particle dot grid */
+  .bg-particle-grid {
+    background-image: radial-gradient(circle, rgba(200,170,110,.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Ambient radial glow backdrop */
+  .bg-ambient-blue {
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(10,200,185,.08) 0%, transparent 70%),
+      #010A13;
+  }
+  .bg-ambient-gold {
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200,170,110,.07) 0%, transparent 70%),
+      #010A13;
+  }
+
+  /* Safe area insets for mobile */
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom, 1rem); }
+  .pt-safe { padding-top:    env(safe-area-inset-top,    1rem); }
+}
