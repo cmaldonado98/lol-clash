@@ -20,19 +20,19 @@ const OUT_DIR = path.join(__dirname, '..', 'public', 'sounds')
 
 const FILES = [
   {
-    url:  'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-uikit/global/default/sounds/button-hover.ogg',
+    url:  'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-uikit/global/default/sfx-uikit-button-generic-hover.ogg',
     name: 'button-hover.ogg',
   },
   {
-    url:  'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/sounds/clash-team-lock.ogg',
+    url:  'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/audio/sfx-clash-player-lockin.ogg',
     name: 'clash-team-lock.ogg',
   },
   {
-    url:  'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-matchmaking/global/default/sounds/matchmaking_found.ogg',
+    url:  'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/audio/sfx-clash-opponent-found.ogg',
     name: 'matchmaking_found.ogg',
   },
   {
-    url:  'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/sounds/clash-hub-bgm.ogg',
+    url:  'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/audio/sfx-clash-trophy-ceremony-music.ogg',
     name: 'clash-hub-bgm.ogg',
   },
 ]

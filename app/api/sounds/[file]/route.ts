@@ -21,34 +21,22 @@ import path from 'path'
 /* ── Allow-list prevents path traversal ── */
 const CDN_MAP: Record<string, string> = {
   'button-hover.ogg':
-    'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-uikit/global/default/sounds/button-hover.ogg',
+    'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-uikit/global/default/sfx-uikit-button-generic-hover.ogg',
   'clash-team-lock.ogg':
-    'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/sounds/clash-team-lock.ogg',
+    'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/audio/sfx-clash-player-lockin.ogg',
   'matchmaking_found.ogg':
-    'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-matchmaking/global/default/sounds/matchmaking_found.ogg',
+    'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/audio/sfx-clash-opponent-found.ogg',
   /* BGM: try primary path, fallback handled in fetchBuffer */
   'clash-hub-bgm.ogg':
-    'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/sounds/clash-hub-bgm.ogg',
+    'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/audio/sfx-clash-trophy-ceremony-music.ogg',
 }
 
 /* Alternate CDN paths to try when primary returns 403/404 */
 const CDN_FALLBACKS: Record<string, string[]> = {
-  'button-hover.ogg': [
-    'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-uikit/global/default/button-hover.ogg',
-    'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-uikit/global/default/audio/button-hover.ogg',
-  ],
-  'clash-team-lock.ogg': [
-    'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/sounds/clash-team-lock.ogg',
-    'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/audio/clash-team-lock.ogg',
-  ],
-  'matchmaking_found.ogg': [
-    'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-matchmaking/global/default/matchmaking_found.ogg',
-    'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-matchmaking/global/default/audio/matchmaking_found.ogg',
-  ],
-  'clash-hub-bgm.ogg': [
-    'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/sounds/clash-hub-bgm.ogg',
-    'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/audio/clash-hub-bgm.ogg',
-  ],
+  'button-hover.ogg': [],
+  'clash-team-lock.ogg': [],
+  'matchmaking_found.ogg': [],
+  'clash-hub-bgm.ogg': [],
 }
 
 /* Browser-like headers prevent CDN 403 blocks on server-side requests */
