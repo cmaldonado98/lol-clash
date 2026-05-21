@@ -29,6 +29,8 @@ const CDN_MAP: Record<string, string> = {
   /* BGM: try primary path, fallback handled in fetchBuffer */
   'clash-hub-bgm.ogg':
     'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/audio/sfx-clash-trophy-ceremony-music.ogg',
+  'clash-round-start.ogg':
+    'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/audio/sfx-clash-round-start.ogg',
 }
 
 /* Alternate CDN paths to try when primary returns 403/404 */
@@ -37,6 +39,7 @@ const CDN_FALLBACKS: Record<string, string[]> = {
   'clash-team-lock.ogg': [],
   'matchmaking_found.ogg': [],
   'clash-hub-bgm.ogg': [],
+  'clash-round-start.ogg': [],
 }
 
 /* Browser-like headers prevent CDN 403 blocks on server-side requests */

@@ -9,24 +9,23 @@
  * server-side, so the corporate proxy / NODE_TLS_REJECT_UNAUTHORIZED=0 applies).
  */
 
-/* ── Role / position icons — routed through /api/roles/[file] ─ */
-/* The API route fetches from Community Dragon on first request,    */
-/* caches to public/roles/, and serves with 7-day Cache-Control.   */
+/* ── Role / position icons — static SVGs from public/assets/roles/ ─ */
 
-export const ROLE_ICON_TOP     = '/api/roles/position-top.png'     as const
-export const ROLE_ICON_JUNGLE  = '/api/roles/position-jungle.png'  as const
-export const ROLE_ICON_MID     = '/api/roles/position-middle.png'  as const
-export const ROLE_ICON_ADC     = '/api/roles/position-bottom.png'  as const
-export const ROLE_ICON_SUPPORT = '/api/roles/position-utility.png' as const
+export const ROLE_ICON_TOP     = '/assets/roles/top.svg'     as const
+export const ROLE_ICON_JUNGLE  = '/assets/roles/jungle.svg'  as const
+export const ROLE_ICON_MID     = '/assets/roles/mid.svg'     as const
+export const ROLE_ICON_ADC     = '/assets/roles/adc.svg'     as const
+export const ROLE_ICON_SUPPORT = '/assets/roles/supp.svg'    as const
 
 /* ── Audio paths — routed through /api/sounds/[file] ────── */
 /* The API route fetches from Community Dragon on first request,   */
 /* caches to public/sounds/, and serves with 7-day Cache-Control.  */
 
-export const SFX_HOVER       = '/api/sounds/button-hover.ogg'      as const
-export const SFX_LOCK_IN     = '/api/sounds/clash-team-lock.ogg'   as const
-export const SFX_MATCH_FOUND = '/api/sounds/matchmaking_found.ogg' as const
-export const BGM_CLASH_HUB   = '/api/sounds/clash-hub-bgm.ogg'     as const
+export const SFX_HOVER        = '/api/sounds/button-hover.ogg'        as const
+export const SFX_LOCK_IN      = '/api/sounds/clash-team-lock.ogg'     as const
+export const SFX_MATCH_FOUND  = '/api/sounds/matchmaking_found.ogg'   as const
+export const BGM_CLASH_HUB    = '/api/sounds/clash-hub-bgm.ogg'       as const
+export const SFX_CLASH_START  = '/api/sounds/clash-round-start.ogg'   as const
 
 /* ── Preload manifest ────────────────────────────────────── */
 

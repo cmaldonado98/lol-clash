@@ -65,7 +65,6 @@ export default function PlayerRow({ player, index, isCurrentPlayer }: PlayerRowP
           style={{ filter: isLocked ? `drop-shadow(0 0 4px ${cfg.accentColor}88)` : undefined }}
         />
       </div>
-      </div>
 
       {/* Name + role label */}
       <div className="flex min-w-0 flex-1 flex-col gap-0.5">
@@ -88,7 +87,7 @@ export default function PlayerRow({ player, index, isCurrentPlayer }: PlayerRowP
             animate={{ scale: 1, opacity: 1 }}
             className="badge-locked flex items-center gap-1 rounded-sm border px-2 py-0.5 font-beaufort text-[10px] uppercase tracking-wider"
           >
-            <span className="text-[8px]">✦</span> Fijado
+            <span className="text-[8px]">✦</span> Confirmado
           </motion.span>
         ) : (
           <span className="badge-pending flex items-center gap-1 rounded-sm border px-2 py-0.5 font-beaufort text-[10px] uppercase tracking-wider">

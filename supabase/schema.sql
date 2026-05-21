@@ -1,5 +1,5 @@
 -- ────────────────────────────────────────────────────────────────
---  Copa Mexicali · Supabase Schema
+--  PanConQuesoTeam #PCQT · Supabase Schema
 --  Run this in the Supabase SQL Editor (Project → SQL Editor → New query)
 -- ────────────────────────────────────────────────────────────────
 
@@ -54,15 +54,15 @@ CREATE POLICY "public_status_update"
 ALTER PUBLICATION supabase_realtime ADD TABLE groomsmen;
 
 -- ────────────────────────────────────────────────────────────────
---  SEED DATA
---  Adjust names, slugs, summoner_icon_id, and roles to match
---  your actual team. Icon IDs can be found at:
---  https://ddragon.leagueoflegends.com/cdn/14.24.1/data/en_US/profileicon.json
+--  SEED DATA  —  PanConQuesoTeam #PCQT
+--  Icon IDs: https://ddragon.leagueoflegends.com/cdn/14.24.1/data/en_US/profileicon.json
 -- ────────────────────────────────────────────────────────────────
 INSERT INTO groomsmen (slug, name, role, summoner_icon_id, status) VALUES
-  ('samuel', 'Samuel',  'Mid',     29,   'pending'),
-  ('isaac',  'Isaac',   'Top',     4364, 'pending'),
-  ('carlos', 'Carlos',  'ADC',     7,    'pending'),
-  ('miguel', 'Miguel',  'Jungle',  23,   'pending'),
-  ('jorge',  'Jorge',   'Support', 1,    'pending')
+  ('gozzelp', 'Gozzelp', 'Mid',     29,   'pending'),
+  ('loup500',  'Loup',    'Mid',     23,   'pending'),
+  ('pelado',   'Pelado',  'Jungle',  4364, 'pending'),
+  ('ryukens',  'RyuKenS', 'ADC',     7,    'pending'),
+  ('valitas',  'Valitas', 'Support', 1,    'pending'),
+  ('oso2011',  'oso2011', 'Top',     4427, 'pending'),
+  ('alai',     'Alai',    'Support', 14,   'pending')
 ON CONFLICT (slug) DO NOTHING;

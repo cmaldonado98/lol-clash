@@ -17,10 +17,10 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const { data } = await supabase.from('groomsmen').select('name, role').eq('slug', slug).single()
-  if (!data) return { title: 'Invitación | Copa Mexicali' }
+  if (!data) return { title: 'Invitación | PanConQuesoTeam #PCQT' }
   return {
-    title: `${data.name} · Copa Mexicali`,
-    description: `${data.name} ha sido reclutado para la Copa Mexicali – Torneo Clash 10/10/2026`,
+    title: `${data.name} · PanConQuesoTeam #PCQT`,
+    description: `ArL3y te está invitando a formar parte de su equipo de clash PanConQuesoTeam #PCQT`,
   }
 }
 

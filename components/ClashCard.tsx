@@ -220,11 +220,12 @@ export default function ClashCard({ groomsman }: ClashCardProps) {
             <div className="relative text-center">
               <div className="hextech-divider-blue mx-auto mb-3 w-24" />
               <p className="font-spiegel text-[11px] uppercase tracking-[.3em] text-hextech-gray">
-                Invocador, has sido seleccionado
+                ArL3y te está invitando a unirte
               </p>
               <h2 className="mt-2 font-beaufort text-xl font-bold uppercase leading-tight tracking-wide text-hextech-gold-light">
-                Has sido reclutado para la{' '}
-                <span className="text-gradient-gold">Copa Mexicali</span>
+                Forma parte del equipo{' '}
+                <span className="text-gradient-gold">PanConQuesoTeam</span>
+                {' '}<span className="text-hextech-blue">#PCQT</span>
               </h2>
               <div className="hextech-divider mx-auto mt-3 w-32" />
             </div>
@@ -282,7 +283,7 @@ export default function ClashCard({ groomsman }: ClashCardProps) {
               className="w-full justify-center"
               onClick={handleAccept}
             >
-              {accepted ? '✦ Invocación Aceptada' : '⚔ Aceptar Invocación'}
+              {accepted ? '✦ Invitación Aceptada' : '⚔ Aceptar'}
             </HextechButton>
 
             <p className="font-spiegel text-[10px] text-hextech-gray/60">

@@ -6,6 +6,7 @@ import type { Groomsman } from '@/types'
 import { supabase } from '@/lib/supabase'
 import PlayerRow from './PlayerRow'
 import HextechButton from './HextechButton'
+import ClashStartOverlay from './ClashStartOverlay'
 
 /* BGM is started by <AudioUnlocker> — no local sound logic needed here. */
 
@@ -23,6 +24,7 @@ export default function TeamLobby({ currentPlayer, allPlayers: initial }: TeamLo
   const [players, setPlayers] = useState<Groomsman[]>(
     [...initial].sort((a, b) => ROLE_ORDER[a.role] - ROLE_ORDER[b.role]),
   )
+  const [showOverlay, setShowOverlay] = useState(false)
 
   const lockedCount = players.filter((p) => p.status === 'locked_in').length
   const allLocked   = lockedCount === players.length
@@ -51,6 +53,7 @@ export default function TeamLobby({ currentPlayer, allPlayers: initial }: TeamLo
 
   return (
     <div className="relative flex min-h-dvh flex-col overflow-hidden bg-ambient-gold">
+      <ClashStartOverlay visible={showOverlay} onDismiss={() => setShowOverlay(false)} />
       {/* Particle grid */}
       <div className="pointer-events-none absolute inset-0 bg-particle-grid opacity-30" />
 
@@ -93,7 +96,7 @@ export default function TeamLobby({ currentPlayer, allPlayers: initial }: TeamLo
               ))}
             </div>
             <span className="font-spiegel text-[10px] text-hextech-gray">
-              {lockedCount}/{players.length} Fijados
+              {lockedCount}/{players.length} Confirmados
             </span>
           </div>
         </div>
@@ -155,6 +158,7 @@ export default function TeamLobby({ currentPlayer, allPlayers: initial }: TeamLo
             size="lg"
             disabled={!allLocked}
             className="w-full justify-center"
+            onClick={allLocked ? () => setShowOverlay(true) : undefined}
           >
             {allLocked
               ? '✦ Composición Bloqueada'
