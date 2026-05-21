@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import type { Groomsman } from '@/types'
-import { getSummonerIconUrl, roleConfig } from '@/lib/utils'
+import { getSummonerIconUrl, getRoleIconUrl, roleConfig } from '@/lib/utils'
 
 interface PlayerRowProps {
   player: Groomsman
@@ -50,14 +50,21 @@ export default function PlayerRow({ player, index, isCurrentPlayer }: PlayerRowP
 
       {/* Role badge */}
       <div
-        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm border text-[9px] font-beaufort font-bold uppercase tracking-wide"
+        className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-sm border"
         style={{
           borderColor: cfg.accentColor + (isLocked ? 'aa' : '44'),
-          color:       cfg.accentColor + (isLocked ? '' : '88'),
           background:  cfg.accentColor + (isLocked ? '18' : '0a'),
         }}
       >
-        {cfg.shortLabel}
+        <Image
+          src={getRoleIconUrl(player.role)}
+          alt={cfg.label}
+          fill
+          className={['object-contain p-1 transition-all duration-300', !isLocked ? 'opacity-40' : ''].join(' ')}
+          sizes="40px"
+          style={{ filter: isLocked ? `drop-shadow(0 0 4px ${cfg.accentColor}88)` : undefined }}
+        />
+      </div>
       </div>
 
       {/* Name + role label */}

@@ -9,11 +9,15 @@
  * server-side, so the corporate proxy / NODE_TLS_REJECT_UNAUTHORIZED=0 applies).
  */
 
-/* ── Image base (Community Dragon CDN, handled server-side) ─ */
+/* ── Role / position icons — routed through /api/roles/[file] ─ */
+/* The API route fetches from Community Dragon on first request,    */
+/* caches to public/roles/, and serves with 7-day Cache-Control.   */
 
-/** Base URL for position icons: append `/position-{key}.png` */
-export const POSITIONS_BASE =
-  'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-shared-components/global/default' as const
+export const ROLE_ICON_TOP     = '/api/roles/position-top.png'     as const
+export const ROLE_ICON_JUNGLE  = '/api/roles/position-jungle.png'  as const
+export const ROLE_ICON_MID     = '/api/roles/position-middle.png'  as const
+export const ROLE_ICON_ADC     = '/api/roles/position-bottom.png'  as const
+export const ROLE_ICON_SUPPORT = '/api/roles/position-utility.png' as const
 
 /* ── Audio paths — routed through /api/sounds/[file] ────── */
 /* The API route fetches from Community Dragon on first request,   */
