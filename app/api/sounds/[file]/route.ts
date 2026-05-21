@@ -51,17 +51,6 @@ const CDN_FALLBACKS: Record<string, string[]> = {
   ],
 }
 
-/**
- * Minimal valid WAV: 1 sample, 8 kHz, 8-bit mono, silence.
- * Returned when all CDN sources fail so the browser never sees a 502
- * or throws NotSupportedError — the audio element just plays silence.
- * Replace files in public/sounds/ to get real audio.
- */
-const SILENCE_WAV = Buffer.from(
-  '524946462500000057415645666d74201000000001000100401f0000401f000001000800646174610100000080',
-  'hex',
-)
-
 /* Browser-like headers prevent CDN 403 blocks on server-side requests */
 const BROWSER_HEADERS = {
   'User-Agent':
@@ -79,7 +68,7 @@ function fetchBuffer(url: string, hops = 5): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     if (hops === 0) return reject(new Error('Too many redirects'))
     https
-      .get(url, { rejectUnauthorized: false, headers: BROWSER_HEADERS }, (res) => {
+      .get(url, { headers: BROWSER_HEADERS }, (res) => {
         /* Follow redirects (Cloudflare / CDN hops) */
         if (res.statusCode! >= 300 && res.statusCode! < 400 && res.headers.location) {
           fetchBuffer(res.headers.location, hops - 1).then(resolve).catch(reject)
@@ -151,10 +140,6 @@ export async function GET(
     })
   } catch (err) {
     console.error(`[sounds] CDN fetch failed for ${file}:`, err)
-    console.info(`[sounds] Fix: place ${file} in public/sounds/ to enable real audio`)
-    // Return 1-sample silence so the browser never throws NotSupportedError
-    return new NextResponse(SILENCE_WAV, {
-      headers: { 'Content-Type': 'audio/wav', 'Cache-Control': 'no-store' },
-    })
+    return new NextResponse(`Audio unavailable: ${file}`, { status: 502 })
   }
 }
