@@ -4,6 +4,7 @@ import { supabase } from '@/lib/supabase'
 import type { Groomsman } from '@/types'
 import ClashCard from '@/components/ClashCard'
 import TeamLobby from '@/components/TeamLobby'
+import AudioUnlocker from '@/components/AudioUnlocker'
 
 /* Always render at request time — Supabase data is user-specific */
 export const dynamic = 'force-dynamic'
@@ -74,12 +75,17 @@ export default async function InvitePage({ params }: PageProps) {
     .returns<Groomsman[]>()
 
   return (
-    <main>
-      {groomsman.status === 'pending' ? (
-        <ClashCard groomsman={groomsman} />
-      ) : (
-        <TeamLobby currentPlayer={groomsman} allPlayers={allPlayers ?? []} />
-      )}
-    </main>
+    <AudioUnlocker
+      notification={groomsman.status === 'pending'}
+      bgm={groomsman.status === 'locked_in'}
+    >
+      <main>
+        {groomsman.status === 'pending' ? (
+          <ClashCard groomsman={groomsman} />
+        ) : (
+          <TeamLobby currentPlayer={groomsman} allPlayers={allPlayers ?? []} />
+        )}
+      </main>
+    </AudioUnlocker>
   )
 }

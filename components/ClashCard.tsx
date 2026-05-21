@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useState, useCallback, useEffect } from 'react'
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
 import type { Groomsman } from '@/types'
-import { getSummonerIconUrl, roleConfig } from '@/lib/utils'
+import { getSummonerIconUrl, getRoleIconUrl, roleConfig } from '@/lib/utils'
 import HextechButton from './HextechButton'
 import { lockIn } from '@/app/actions/lockIn'
 
@@ -48,13 +48,22 @@ function RoleBadge({ role }: { role: Groomsman['role'] }) {
   const cfg = roleConfig[role]
   return (
     <span
-      className="inline-flex items-center gap-1 rounded-sm border px-2.5 py-0.5 font-beaufort text-[10px] uppercase tracking-widest"
+      className="inline-flex items-center gap-1.5 rounded-sm border px-2.5 py-0.5 font-beaufort text-[10px] uppercase tracking-widest"
       style={{
         borderColor: cfg.accentColor + '80',
         color: cfg.accentColor,
         background: cfg.accentColor + '18',
       }}
     >
+      <Image
+        src={getRoleIconUrl(role)}
+        alt={cfg.shortLabel}
+        width={14}
+        height={14}
+        className="shrink-0"
+        style={{ width: 14, height: 14 }}
+        unoptimized
+      />
       {cfg.shortLabel} · {cfg.label}
     </span>
   )
@@ -103,6 +112,9 @@ function Particles() {
 export default function ClashCard({ groomsman }: ClashCardProps) {
   const [loading, setLoading] = useState(false)
   const [accepted, setAccepted] = useState(false)
+
+  /* Sounds (match-found notification, BGM) are managed by <AudioUnlocker>,
+     which guarantees the AudioContext is unlocked before any audio plays. */
 
   /* 3-D tilt on pointer move */
   const x = useMotionValue(0)

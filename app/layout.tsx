@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Cinzel, Inter } from 'next/font/google'
+import { SFX_PRELOAD_URLS } from '@/lib/constants/assets'
 import './globals.css'
 
 /* ── Beaufort-equivalent: Cinzel (serif, all-caps capable) ── */
@@ -39,6 +40,17 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={`${cinzel.variable} ${inter.variable}`}>
+      {/*
+       * Preload SFX as audio resources.
+       * as="audio" matches how Howler (html5: true) loads files via <audio>,
+       * so the browser pre-fills the resource cache before JS even runs.
+       * No crossOrigin needed — <audio> elements allow cross-origin src by default.
+       */}
+      <head>
+        {SFX_PRELOAD_URLS.map((href) => (
+          <link key={href} rel="preload" as="audio" href={href} />
+        ))}
+      </head>
       <body className="bg-hextech-black min-h-dvh overflow-x-hidden antialiased">
         {children}
       </body>

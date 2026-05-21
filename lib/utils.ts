@@ -1,4 +1,5 @@
 import type { PlayerRole } from '@/types'
+import { POSITIONS_BASE } from '@/lib/constants/assets'
 
 /* ─────────────────────────────────────────────────────────── */
 /*  Data Dragon                                                */
@@ -28,9 +29,10 @@ export const roleConfig: Record<
 }
 
 /**
- * Community Dragon position icon URL (free, public).
+ * Community Dragon position icon URL.
+ * Base: rcp-fe-lol-shared-components · files: position-{key}.png
  */
 export function getRoleIconUrl(role: PlayerRole): string {
   const { positionKey } = roleConfig[role]
-  return `https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/images/position-selector/positions/icon-position-${positionKey}-large.png`
+  return `${POSITIONS_BASE}/position-${positionKey}.png`
 }

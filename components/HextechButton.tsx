@@ -2,6 +2,32 @@
 
 import { motion } from 'framer-motion'
 import type { ButtonHTMLAttributes } from 'react'
+import { SFX_HOVER, SFX_LOCK_IN } from '@/lib/constants/assets'
+
+/* ── Module-level audio singletons ──
+   Created once per page load, shared across every HextechButton instance.
+   Using native HTMLAudioElement avoids Howler.js/use-sound compatibility
+   issues and surfaces errors directly to the console. */
+let _hoverAudio: HTMLAudioElement | null = null
+let _clickAudio: HTMLAudioElement | null = null
+
+function sfx(slot: 'hover' | 'click'): HTMLAudioElement | null {
+  if (typeof window === 'undefined') return null
+  if (slot === 'hover') {
+    if (!_hoverAudio) {
+      _hoverAudio = new Audio(SFX_HOVER)
+      _hoverAudio.volume = 0.45
+      _hoverAudio.preload = 'auto'
+    }
+    return _hoverAudio
+  }
+  if (!_clickAudio) {
+    _clickAudio = new Audio(SFX_LOCK_IN)
+    _clickAudio.volume = 0.75
+    _clickAudio.preload = 'auto'
+  }
+  return _clickAudio
+}
 
 interface HextechButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'blue' | 'gold'
@@ -16,9 +42,29 @@ export default function HextechButton({
   loading = false,
   disabled,
   className = '',
+  onClick,
   ...props
 }: HextechButtonProps) {
   const isDisabled = disabled || loading
+
+  const playHover = () => {
+    const a = sfx('hover')
+    if (!a) return
+    a.currentTime = 0
+    a.play().catch(() => {}) /* may fail before first gesture on mobile — OK */
+  }
+
+  const playClick = () => {
+    const a = sfx('click')
+    if (!a) return
+    a.currentTime = 0
+    a.play().catch(console.error)
+  }
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!isDisabled) playClick()
+    onClick?.(e)
+  }
 
   const sizeClass = {
     sm: 'px-5 py-2   text-xs  min-h-[36px]',
@@ -38,6 +84,7 @@ export default function HextechButton({
     <motion.button
       whileHover={!isDisabled ? { scale: 1.025, y: -1 } : {}}
       whileTap={!isDisabled  ? { scale: 0.975, y: 0  } : {}}
+      onHoverStart={() => { if (!isDisabled) playHover() }}
       transition={{ type: 'spring', stiffness: 420, damping: 26 }}
       disabled={isDisabled}
       className={[
@@ -47,6 +94,7 @@ export default function HextechButton({
         isDisabled ? disabledClass : activeClass,
         className,
       ].join(' ')}
+      onClick={handleClick}
       {...(props as object)}
     >
       {/* ── Corner ornaments ── */}

@@ -7,6 +7,8 @@ import { supabase } from '@/lib/supabase'
 import PlayerRow from './PlayerRow'
 import HextechButton from './HextechButton'
 
+/* BGM is started by <AudioUnlocker> — no local sound logic needed here. */
+
 interface TeamLobbyProps {
   currentPlayer: Groomsman
   allPlayers: Groomsman[]
