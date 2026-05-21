@@ -9,6 +9,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ['192.168.10.157'],
   images: {
     remotePatterns: [
       {
