@@ -190,7 +190,7 @@ export default function AudioUnlocker({
 
             {/* ── Blinking prompt ── */}
             <motion.p
-              className="font-spiegel text-[11px] uppercase tracking-[.25em] text-hextech-blue"
+              className="font-spiegel text-[11px] uppercase tracking-[.25em] text-hextech-blue text-center w-full"
               animate={{ opacity: [1, 0.2, 1] }}
               transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
             >
