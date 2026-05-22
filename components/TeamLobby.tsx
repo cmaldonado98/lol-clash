@@ -161,7 +161,7 @@ export default function TeamLobby({ currentPlayer, allPlayers: initial }: TeamLo
             onClick={allLocked ? () => setShowOverlay(true) : undefined}
           >
             {allLocked
-              ? '✦ Composición Bloqueada'
+              ? '✦ Confirmar Equipo'
               : '🔒 Bloquear Composición (10 de Octubre, 2026)'}
           </HextechButton>
 
