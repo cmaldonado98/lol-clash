@@ -161,7 +161,7 @@ export default function ClashStartOverlay({ visible, onDismiss }: ClashStartOver
                 transition={{ delay: 1.25 }}
                 onClick={onDismiss}
               >
-                ✦ ¡Que comience el clash!
+                ✦ ¡Que comience el clash! ✦
               </motion.button>
 
               {/* Bottom accent bar */}

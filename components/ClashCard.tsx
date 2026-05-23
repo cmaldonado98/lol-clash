@@ -258,7 +258,7 @@ export default function ClashCard({ groomsman }: ClashCardProps) {
 
             {/* Name + Role */}
             <div className="flex flex-col items-center gap-2">
-              <span className="font-beaufort text-2xl font-black uppercase tracking-widest text-hextech-gold-light">
+              <span className="block text-center font-beaufort text-2xl font-black uppercase tracking-widest text-hextech-gold-light">
                 {groomsman.name}
               </span>
               <RoleBadge role={groomsman.role} />
