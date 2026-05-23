@@ -109,7 +109,7 @@ export async function GET(
   /* ── Fast path: serve from disk cache ── */
   if (fs.existsSync(localPath)) {
     const data = fs.readFileSync(localPath)
-    return new NextResponse(data, {
+    return new NextResponse(new Uint8Array(data), {
       headers: {
         'Content-Type': 'audio/ogg',
         'Cache-Control': 'public, max-age=604800, immutable',
@@ -123,7 +123,7 @@ export async function GET(
     fs.mkdirSync(SOUNDS_DIR, { recursive: true })
     fs.writeFileSync(localPath, data)
     console.info(`[sounds] cached ${file} (${(data.length / 1024).toFixed(0)} KB)`)
-    return new NextResponse(data, {
+    return new NextResponse(new Uint8Array(data), {
       headers: {
         'Content-Type': 'audio/ogg',
         'Cache-Control': 'public, max-age=604800, immutable',
